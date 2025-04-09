@@ -1,51 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Just Lilith.</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      background-color: black;
-      overflow: hidden;
-      font-family: sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just Lilith</title>
+    <link rel="icon" href="cake.png" type="image/png">
+    <style>
+        @font-face {
+            font-family: 'InvincibleMarines';
+            src: url('Font/UiFont(InvincibleMarines).ttf') format('truetype');
+        }
 
-    body {
-      position: relative;
-    }
+        @font-face {
+            font-family: 'MainDialoge';
+            src: url('Font/MainDialoge SDF.ttf') format('truetype');
+        }
 
-    video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      min-height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
 
-    .center-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      font-size: 4em;
-      font-weight: bold;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-      text-align: center;
-    }
-  </style>
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            z-index: -1;
+            animation: darken-background 1s ease-in-out 2.5s forwards;
+        }
+
+        @keyframes darken-background {
+            from {
+                background-color: rgba(0, 0, 0, 0);
+            }
+            to {
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        #text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            z-index: 1;
+            font-family: 'InvincibleMarines', sans-serif;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fade-in-text 1.5s ease-in-out 1s forwards, slide-up 1s ease-in-out 2.5s forwards;
+        }
+
+        @keyframes fade-in-text {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        @keyframes slide-up {
+            0% {
+                transform: translate(-50%, -50%);
+            }
+            100% {
+                transform: translate(-50%, -200%);
+            }
+        }
+
+        #dialogue {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            font-family: 'MainDialoge', monospace;
+            color: white;
+            text-align: center;
+            z-index: 2;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid transparent;
+            width: 0;
+            animation: blink-caret 0.75s step-end infinite 3.5s, typing 3s steps(40, end) 5.5s forwards, stop-caret 0s linear 8.5s forwards;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 45%;
+            }
+        }
+
+        @keyframes blink-caret {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: white;
+            }
+        }
+
+        @keyframes stop-caret {
+            to {
+                border-color: transparent;
+            }
+        }
+    </style>
 </head>
 <body>
-  <video autoplay loop muted playsinline>
-    <source src="Lilith.webm" type="video/webm">
-    Your browser does not support the video tag.
-  </video>
-  <div class="center-text">Just Lilith.</div>
+    <video id="background-video" autoplay muted loop>
+        <source src="Lilith.webm" type="video/webm">
+        Your browser does not support the video tag.
+    </video>
+
+    <div id="overlay"></div>
+
+    <div id="text">Just Lilith</div>
+
+    <div id="dialogue">We are here, with Lilith, and her cake, in the Eternity.</div>
 </body>
 </html>
