@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fullscreen GIF</title>
+  <title>Fullscreen Video</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       background-color: black;
+      overflow: hidden;
     }
-    img {
+    video {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -19,6 +20,9 @@
   </style>
 </head>
 <body>
-  <img src="Lilith.gif">
+  <video autoplay loop muted playsinline>
+    <source src="your-video.webm" type="video/webm">
+    Your browser does not support the video tag.
+  </video>
 </body>
 </html>
