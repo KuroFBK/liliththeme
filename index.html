@@ -130,6 +130,24 @@
                 border-color: transparent;
             }
         }
+
+        #new-line {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            font-family: 'MainDialoge', monospace;
+            color: white;
+            text-align: center;
+            z-index: 3;
+            display: none;
+        }
+
+        #new-line a {
+            color: cyan;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -143,5 +161,13 @@
     <div id="text">Just Lilith</div>
 
     <div id="dialogue">We are here, with Lilith, and her cake, in the Eternity.</div>
+
+    <div id="new-line">Oh by the way, you can download the theme <a href="https://example.com" target="_blank">here</a>.</div>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById('new-line').style.display = 'block';
+        }, 11500);
+    </script>
 </body>
 </html>
